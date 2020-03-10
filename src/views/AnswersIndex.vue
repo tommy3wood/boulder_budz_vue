@@ -1,14 +1,16 @@
 <template>
-  <div class="questions-index">
-    <h1 class="text-center mb-5">QUESTIONS</h1>
+  <div class="answers-index">
+    <h1 class="text-center mb-5">ANSWERS</h1>
     <p>===================================================================================================================</p>
 
-    <div v-for="question in questions">
-      <router-link v-bind:to="'/questions/' + question.id"> 
+    <div v-for="answer in answers">
+   <!--    <router-link v-bind:to="'/questions/' + question.id"> 
         <h3 >{{ question.title }}</h3>
-      </router-link>
-      <h5>User: {{ question.op }}</h5>
-      <h5>Category: {{ question.category }}</h5>
+      </router-link> -->
+      <h1></h1>
+      <h5>User: {{ answer.op }}</h5>
+      <h5>Answer: {{ answer.content }}</h5>
+      <router-link v-bind:to="'/answers/' + answer.id">View Comment</router-link>
       <p>===================================================================================================================</p>
     </div>   
   </div>
@@ -23,14 +25,14 @@
   export default {
     data: function() {
       return {
-        questions: []
+        answers: []
       };
     },
     created: function() {
       axios
-        .get("/api/questions")
+        .get("/api/answers")
         .then(response => {
-          this.questions = response.data;
+          this.answers = response.data;
         });
     },
     methods: {}

@@ -1,7 +1,7 @@
 <template>
-  <div class="questions-new">
+  <div class="questions-edit">
     
-      <form v-on:submit.prevent="createQuestion()">
+      <form v-on:submit.prevent="updateQuestion()">
         <h1 class="text-center mb-5">New Question</h1>
 
         <ul>
@@ -10,7 +10,7 @@
 
         <div class="form-group">
           <span>Category: </span>
-          <select v-model="category">
+          <select v-model="question.category">
             <option disabled value="">Please select one</option>
             <option value="advice">advice</option>
             <option value="beta_room">Beta Room</option>
@@ -21,12 +21,12 @@
 
         <div class="form-group">
           <label>Question Title: </label>
-          <input class="form-control" type="text" v-model="title">
+          <input class="form-control" type="text" v-model="question.title">
         </div>
 
         <div class="form-group">
           <label>Question Body: </label>
-          <input class="form-control" type="text" v-model="content">
+          <input class="form-control" type="text" v-model="question.content">
         </div>
 
         <input class="btn btn-info" type="submit" value="Create">
@@ -36,34 +36,42 @@
   </div>
 </template>
 
+<style>
+</style>
+
 <script>
   var axios = require("axios");
 
   export default {
     data: function() {
       return {
-        user_id: 1,
-        category: "",
-        title: "",
-        content: "",
-
+        question: {
+          category: "",
+          title: "",
+          content: ""
+        },
         errors: []
       };
     },
-    created: function() {},
+    created: function() {
+      axios
+        .get("/api/questions/" + this.$route.params.id)
+        .then(response => {
+          this.question = response.data;
+        });
+    },
     methods: {
-      createQuestion: function() {
+      updateQuestion: function() {
         var clientParams = {
-          user_id: this.user_id,
-          category: this.category,
-          title: this.title,
-          content: this.content
+          category: this.question.category,
+          title: this.question.title,
+          content: this.question.content
         };
 
         axios
-          .post("/api/questions", clientParams)
+          .patch("/api/questions/" + this.$route.params.id, clientParams)
           .then(response => {
-            this.$router.push("/questions");
+            this.$router.push("/questions/" + this.$route.params.id);
           }).catch(error => {
             this.errors = error.response.data.errors;
           });
