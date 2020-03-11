@@ -9,7 +9,7 @@
         </ul>
 
  
-        <h2>{{answer.op}}</h2>
+        <h2>{{answer.answer_op}}</h2>
         <div class="form-group">
           <label>Answer: </label>
           <input class="form-control" type="text" v-model="answer.content">

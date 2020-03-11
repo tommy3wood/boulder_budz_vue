@@ -1,6 +1,6 @@
 <template>
   <div class="answers-index">
-      <h5>User: {{ answer.op }}</h5>
+      <h5>User: {{ answer.answer_op }}</h5>
       <h5>Answer: {{ answer.content }}</h5>
       <router-link v-bind:to="answer.parent_route">Parent</router-link>
       <div>
@@ -8,7 +8,18 @@
         <br>
         <button v-on:click="destroyAnswer()">Delete</button>
       </div>
+      <form v-on:submit.prevent="createAnswer()">
 
+        <ul>
+          <li class="text-danger" v-for="error in errors">{{ error }}</li>
+        </ul>
+
+        <div class="form-group">
+          <input type="text" v-model="content">
+        </div>
+
+        <input class="btn btn-info" type="submit" value="Respond">
+      </form>
   </div>
 </template>
 
@@ -32,6 +43,21 @@
         });
     },
     methods: {
+      createAnswer: function() {
+        var clientParams = {
+          answerable_id: this.answer.id,
+          answerable_type: "Answer",
+          content: this.content
+        };
+
+        axios
+          .post("/api/answers", clientParams)
+          .then(response => {
+            this.$router.push("/answers");
+          }).catch(error => {
+            this.errors = error.response.data.errors;
+          });
+      },
       destroyAnswer: function() {
         axios
           .delete("/api/answers/" + this.$route.params.id)

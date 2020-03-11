@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
       <router-link to="/Signup">Signup</router-link> |
-      <router-link to="/questions">Questions Index</router-link> |
+      <router-link to="/">Questions Index</router-link> |
       <router-link to="/questions/new">New Question</router-link> |
 
     </div>

@@ -8,7 +8,7 @@
         <h3 >{{ question.title }}</h3>
       </router-link> -->
       <h1></h1>
-      <h5>User: {{ answer.op }}</h5>
+      <h5>User: {{ answer.answer_op }}</h5>
       <h5>Answer: {{ answer.content }}</h5>
       <router-link v-bind:to="'/answers/' + answer.id">View Comment</router-link>
       <p>===================================================================================================================</p>

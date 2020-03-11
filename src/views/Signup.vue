@@ -14,7 +14,7 @@
           <label>Password:</label>
           <input type="password" class="form-control" v-model="password">
         </div> -->
-        <!-- <div class="form-group">
+        <div class="form-group">
           <label>Password confirmation:</label>
           <input 
             type="password" 
@@ -31,7 +31,7 @@
           <div class="invalid-feedback">
             Password must match password confirmation
           </div>
-        </div> -->
+        </div>
         <div class="form-group">
           <label>Phone:</label>
           <input type="phone" class="form-control" v-model="phone">
@@ -65,8 +65,8 @@ export default {
   data: function() {
     return {
       email: "",
-      // password: "password",
-      // passwordConfirmation: "password",
+      password: "password",
+      passwordConfirmation: "password",
       phone: "",
       bio: "",
       home_crag: "",
@@ -78,8 +78,8 @@ export default {
     submit: function() {
       var params = {
         email: this.email,
-        // password: this.password,
-        // password_confirmation: this.passwordConfirmation,
+        password: this.password,
+        password_confirmation: this.passwordConfirmation,
         phone: this.phone,
         bio: this.bio,
         home_crag: this.home_crag,
@@ -88,7 +88,7 @@ export default {
       axios
         .post("/api/users", params)
         .then(response => {
-          this.$router.push("/");
+          this.$router.push("/login");
         })
         .catch(error => {
           this.errors = error.response.data.errors;

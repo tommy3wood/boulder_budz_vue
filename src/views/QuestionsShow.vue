@@ -12,10 +12,12 @@
       </div>
 
       <h2>Answers</h2>
-      <div v-for="answer in question.answers">
-        <h5>User: {{ answer.user_id }}</h5>
-        <h5>{{ answer.content }}</h5>
-        <p>==============================</p>
+
+      <div class="first-level-answers">
+        <h4>Answer Tree:</h4>
+        <answer v-for="nestedAnswer in question.answers" :answer="nestedAnswer">
+          <p>======</p>
+        </answer>
       </div>
 
       <form v-on:submit.prevent="createQuestionAnswer()">
@@ -24,7 +26,7 @@
         </ul>
         <h5>Respond:</h5>
         <div class="form-group">
-          <input type="text" v-model="content">
+          <input type="text" v-model="qa_content">
         </div>
 
         <input class="btn btn-info" type="submit" value="Respond">
@@ -38,12 +40,19 @@
 
 <script>
   var axios = require("axios");
+  import Answer from '../components/Answer.vue';
 
   export default {
     data: function() {
       return {
-        question: []
+        question: [],
+        qa_content: "",
+  
+        errors: []
       };
+    },
+    components: {
+      Answer
     },
     created: function() {
       axios
@@ -55,16 +64,30 @@
     methods: {
       createQuestionAnswer: function() {
         var clientParams = {
-          user_id: 1,
           answerable_id: this.question.id,
           answerable_type: "Question",
-          content: this.content
+          content: this.qa_content
         };
 
         axios
           .post("/api/answers", clientParams)
           .then(response => {
-            this.$router.push("/answers");
+            this.question.answers.push(response.data);
+          }).catch(error => {
+            this.errors = error.response.data.errors;
+          });
+      },
+      createAnswerAnswer: function() {
+        var clientParams = {
+          answerable_id: this.answer.id,
+          answerable_type: "Answer",
+          content: this.aa_content
+        };
+
+        axios
+          .post("/api/answers", clientParams)
+          .then(response => {
+            this.answer.nest_answers.push(response.data);
           }).catch(error => {
             this.errors = error.response.data.errors;
           });

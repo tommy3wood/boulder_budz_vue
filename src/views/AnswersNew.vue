@@ -36,25 +36,8 @@
     methods: {
       createQuestionAnswer: function() {
         var clientParams = {
-          user_id: 1,
           answerable_id: 1,
           answerable_type: "Question",
-          content: this.content
-        };
-
-        axios
-          .post("/api/answers", clientParams)
-          .then(response => {
-            this.$router.push("/answers");
-          }).catch(error => {
-            this.errors = error.response.data.errors;
-          });
-      },
-      createAnswerAnswer: function() {
-        var clientParams = {
-          user_id: 1,
-          answerable_id: 3,
-          answerable_type: "Answer",
           content: this.content
         };
 

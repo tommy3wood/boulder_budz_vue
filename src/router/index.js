@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Signup from '../views/Signup.vue';
+import Login from "../views/Login.vue";
+import Logout from "../views/Logout.vue";
 
 import QuestionsIndex from '../views/QuestionsIndex.vue'
 import QuestionsNew from '../views/QuestionsNew.vue'
@@ -17,8 +19,10 @@ Vue.use(VueRouter)
 
 const routes = [
   {path: '/signup', name: 'signup', component: Signup},
+  { path: "/login", name: "login", component: Login },
+  { path: "/logout", name: "logout", component: Logout },
 
-  {path: '/questions', name: 'questions-index', component: QuestionsIndex},
+  {path: '/', name: 'root', component: QuestionsIndex},
   {path: '/questions/new', name: 'questions-new', component: QuestionsNew},
   {path: '/questions/:id', name: 'questions-show', component: QuestionsShow},
   {path: '/questions/:id/edit', name: 'questions-edit', component: QuestionsEdit},
