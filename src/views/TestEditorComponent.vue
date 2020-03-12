@@ -1,13 +1,27 @@
 <template>
   <div id="app">
+    <div class="editor-container">
+      
+      <div class="editor">
+        <div class="current-color" :style="{ backgroundColor: color }"></div>
+        <Tool :event="() => undo()" :iconClass="'fas fa-undo-alt fa-lg'" />
+        
 
+        
+        <Tool
+        :event="() => setTool('freeDrawing')"
+        :iconClass="'fas fa-pencil-alt fa-lg'"
+        :class="{ 'active-tool': currentActiveMethod === 'freeDrawing' }" 
+        />
+          
+      </div>
 
-    <Editor 
-      :canvasWidth="canvasWidth" 
-      :canvasHeight="canvasHeight" 
-      ref="editor"
-    />
-
+      <Editor 
+        :canvasWidth="canvasWidth" 
+        :canvasHeight="canvasHeight" 
+        ref="editor"
+      />
+    </div>
 
     <div class="colors">
       <ColorPicker :color="'#e40000'" :event="changeColor" />
@@ -36,15 +50,16 @@
 import Editor from 'vue-image-markup';
 import Tool from "../components/Tool/Tool.vue";
 import ColorPicker from "../components/ColorPicker/ColorPicker.vue";
-// import "@fortawesome/fontawesome-free/css/all.css";
-// import "@fortawesome/fontawesome-free/js/all.js";
+import "@fortawesome/fontawesome-free/css/all.css";
+import "@fortawesome/fontawesome-free/js/all.js";
 
 export default {
   name: "app",
   components: {
     ColorPicker,
     Tool,
-    Editor
+    Editor,
+
   },
 
   data: function() {
@@ -93,32 +108,94 @@ export default {
   created: function() {},
 
   methods: {
-    drawOnImage(){
-      let customizeFreeDrawing = { stroke: 'black',strokeWidth: "15" }
-      this.$refs.editor.set('freeDrawing',customizeFreeDrawing)
+    cropImage() {
+      this.currentActiveMethod = "crop";
+      this.setTool("crop");
     },
-    clearCanvas(){
+    applyCropping() {
+      this.currentActiveMethod = "";
+      this.$refs.editor.applyCropping();
+    },
+    changeColor(colorHex) {
+      this.color = colorHex;
+      this.$refs.editor.changeColor(colorHex);
+    },
+    saveImage(){
+      let image = this.$refs.editor.saveImage();
+      this.saveImageAsFile(image);
+    },
+    saveImageAsFile(base64) {
+      let link = document.createElement("a");
+      link.setAttribute("href", base64);
+      link.setAttribute("download", "image-markup");
+      link.click();
+    },
+    setTool(type, params) {
+      this.currentActiveMethod = type;
+      this.$refs.editor.set(type, params);
+    },
+    uploadImage(e) {
+      this.$refs.editor.uploadImage(e);
+    },
+    clear() {
+      this.currentActiveMethod = this.clear;
       this.$refs.editor.clear();
     },
-    undoLast(){
-      this.$refs.editor.undo()
+    undo() {
+      this.currentActiveMethod = this.undo;
+      this.$refs.editor.undo();
     },
-    redoLast(){
-      this.$refs.editor.redo()
-    },
-    typeOnImage(){
-      let textModeOptions = { fill: 'black', fontFamily: 'Verdana',fontSize: 12, placeholder: 'Type something'}
-      this.$refs.editor.set('text')
-    },
-    save(){
-      this.$refs.editor.saveImage()
+    redo() {
+      this.currentActiveMethod = this.redo;
+      this.$refs.editor.redo();
     }
-    // uploadBackground(){
-    //   this.$refs.editor.uploadImage(e)
-    // },
-    // saveMarkup(){
-    //   this.$refs.editor.saveImage()
-    // },
   }
 };
 </script>
+
+<style lang="scss">
+.main {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  .editor-container {
+    display: flex;
+    flex-direction: column;
+    .editor {
+      display: flex;
+      justify-content: space-between;
+      .current-color {
+        border-radius: 5px;
+        min-width: 28px;
+        min-height: 28px;
+      }
+      .active-tool {
+        cursor: pointer;
+        color: #4287f5;
+      }
+    }
+  }
+
+  .colors {
+    display: flex;
+    flex-direction: column;
+    margin: 40px 25px 0 25px;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+
+.custom-editor {
+  margin-top: 20px;
+}
+
+canvas {
+    border: 1px solid #00000021;
+  }
+</style>
