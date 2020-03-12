@@ -2,7 +2,7 @@
   <div class="answers-index">
       <h5>User: {{ answer.answer_op }}</h5>
       <h5>Answer: {{ answer.content }}</h5>
-      <router-link v-bind:to="answer.parent_route">Parent</router-link>
+      <router-link v-bind:to="answer.parent_route">Answer Context</router-link>
       <div>
         <router-link v-bind:to="'/answers/' + answer.id + '/edit'">Edit Answer</router-link>
         <br>
@@ -53,7 +53,7 @@
         axios
           .post("/api/answers", clientParams)
           .then(response => {
-            this.$router.push("/answers");
+            this.$router.push("/");
           }).catch(error => {
             this.errors = error.response.data.errors;
           });

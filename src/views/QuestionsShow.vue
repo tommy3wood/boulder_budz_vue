@@ -1,6 +1,10 @@
 <template>
   <div class="questions-index">
-    <h1 class="text-center mb-5">{{question.title}}</h1>
+      <div>
+        <img :src="question.image_url" v-bind:alt="question.title">
+      </div>
+      <h1>Question</h1>
+      <h3>{{question.title}}</h3>
       <h5>User: {{ question.op }}</h5>
       <h5>Category: {{ question.category }}</h5>
       <h5>Question Body: {{ question.content }}</h5>
@@ -15,9 +19,7 @@
 
       <div class="first-level-answers">
         <h4>Answer Tree:</h4>
-        <answer v-for="nestedAnswer in question.answers" :answer="nestedAnswer">
-          <p>======</p>
-        </answer>
+        <answer v-for="nestedAnswer in question.answers" :answer="nestedAnswer"></answer>
       </div>
 
       <form v-on:submit.prevent="createQuestionAnswer()">
@@ -47,7 +49,6 @@
       return {
         question: [],
         qa_content: "",
-  
         errors: []
       };
     },
@@ -73,21 +74,6 @@
           .post("/api/answers", clientParams)
           .then(response => {
             this.question.answers.push(response.data);
-          }).catch(error => {
-            this.errors = error.response.data.errors;
-          });
-      },
-      createAnswerAnswer: function() {
-        var clientParams = {
-          answerable_id: this.answer.id,
-          answerable_type: "Answer",
-          content: this.aa_content
-        };
-
-        axios
-          .post("/api/answers", clientParams)
-          .then(response => {
-            this.answer.nest_answers.push(response.data);
           }).catch(error => {
             this.errors = error.response.data.errors;
           });

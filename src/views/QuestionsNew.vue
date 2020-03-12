@@ -29,6 +29,11 @@
           <input class="form-control" type="text" v-model="content">
         </div>
 
+        <div>
+          <label>Picture: </label>
+          <input type="file" v-on:change="setFile($event)" ref="fileInput">
+        </div>
+
         <input class="btn btn-info" type="submit" value="Create">
       </form>
 
@@ -42,26 +47,31 @@
   export default {
     data: function() {
       return {
-        user_id: 1,
         category: "",
         title: "",
         content: "",
-
+        image: "",
         errors: []
       };
     },
     created: function() {},
     methods: {
-      createQuestion: function() {
-        var clientParams = {
-          user_id: this.user_id,
-          category: this.category,
-          title: this.title,
-          content: this.content
-        };
+      setFile: function(event) {
+        if (event.target.files.length > 0) {
+          this.image = event.target.files[0];
+        }
+      },
 
+      createQuestion: function() {
+        var formData = new FormData();
+          formData.append("user_id", this.user_id);
+          formData.append("category", this.category);
+          formData.append("title", this.title);
+          formData.append("content", this.content);
+          formData.append("image", this.image);
+ 
         axios
-          .post("/api/questions", clientParams)
+          .post("/api/questions", formData)
           .then(response => {
             this.$router.push("/questions");
           }).catch(error => {

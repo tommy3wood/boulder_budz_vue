@@ -29,6 +29,8 @@
           <input class="form-control" type="text" v-model="question.content">
         </div>
 
+
+
         <input class="btn btn-info" type="submit" value="Create">
       </form>
 
@@ -48,7 +50,8 @@
         question: {
           category: "",
           title: "",
-          content: ""
+          content: "",
+          image: ""
         },
         errors: []
       };
@@ -76,6 +79,7 @@
             this.errors = error.response.data.errors;
           });
       }
+      
     }
   };
 </script>
