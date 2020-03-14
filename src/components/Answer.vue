@@ -1,5 +1,8 @@
 <template>
   <div class="answer">
+      <div>
+        <img :src="answer.image_url" >
+      </div>
       <h6>User: {{ answer.answer_op }}</h6>
       <h6>Response: {{ answer.content }}</h6>
       <router-link v-bind:to="'/answers/' + answer.id">Respond to this answer!</router-link>

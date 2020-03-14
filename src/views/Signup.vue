@@ -10,10 +10,10 @@
           <label>Email:</label>
           <input type="email" class="form-control" v-model="email">
         </div>
-<!--         <div class="form-group">
+        <div class="form-group">
           <label>Password:</label>
           <input type="password" class="form-control" v-model="password">
-        </div> -->
+        </div>
         <div class="form-group">
           <label>Password confirmation:</label>
           <input 
@@ -25,12 +25,12 @@
                     }" 
             v-model="passwordConfirmation"
           >
-          <div class="valid-feedback">
+   <!--        <div class="valid-feedback">
             Passwords Match
           </div>
           <div class="invalid-feedback">
             Password must match password confirmation
-          </div>
+          </div> -->
         </div>
         <div class="form-group">
           <label>Phone:</label>

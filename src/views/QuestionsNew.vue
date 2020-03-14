@@ -64,12 +64,11 @@
 
       createQuestion: function() {
         var formData = new FormData();
-          formData.append("user_id", this.user_id);
           formData.append("category", this.category);
           formData.append("title", this.title);
           formData.append("content", this.content);
           formData.append("image", this.image);
- 
+          console.log(formData);
         axios
           .post("/api/questions", formData)
           .then(response => {

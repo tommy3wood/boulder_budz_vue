@@ -60,6 +60,7 @@
         .get("/api/questions/" + this.$route.params.id)
         .then(response => {
           this.question = response.data;
+          console.log(this.question)
         });
     },
     methods: {
