@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="image-answer-create">
     <div class="container">
       <h1>{{question.title}}</h1>
     </div>

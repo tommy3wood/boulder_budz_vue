@@ -13,7 +13,7 @@ import QuestionsEdit from '../views/QuestionsEdit.vue'
 import AnswersShow from '../views/AnswersShow.vue'
 import AnswersEdit from '../views/AnswersEdit.vue'
 
-import TestEditorComponent from '../views/TestEditorComponent.vue'
+import QuestionsImageAnswerCreate from '../views/QuestionsImageAnswerCreate.vue'
 
 Vue.use(VueRouter)
 
@@ -32,7 +32,7 @@ const routes = [
   {path: '/answers/:id', name: 'answers-show', component: AnswersShow},
   {path: '/answers/:id/edit', name: 'answers-edit', component: AnswersEdit},
 
-  {path: '/questions/:id/edit/image', name: 'canvas-test', component: TestEditorComponent}
+  {path: '/questions/:id/image', name: 'image-answer-create', component: QuestionsImageAnswerCreate}
 ]
 
 const router = new VueRouter({

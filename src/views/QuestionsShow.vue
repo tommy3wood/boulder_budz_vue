@@ -33,6 +33,7 @@
 
         <input class="btn btn-info" type="submit" value="Respond">
       </form>
+      <router-link v-bind:to="'/questions/' + question.id + '/image'">Image Edit</router-link>
 
   </div>
 </template>

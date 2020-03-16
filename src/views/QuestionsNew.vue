@@ -50,7 +50,7 @@
         category: "",
         title: "",
         content: "",
-        image: "",
+        image: null,
         errors: []
       };
     },

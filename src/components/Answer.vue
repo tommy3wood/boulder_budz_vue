@@ -8,8 +8,8 @@
       <h6>Downvotes: {{answer.downvotes}}</h6>
       <h6>Response: {{ answer.content }}</h6>
       <h6>Vote Count: {{ answer.vote_count }}</h6>
-      <button v-on:click="upvote()">+</button>
-      <button v-on:click="downvote()">-</button>
+      <button class="'fas fa-arrow-up'" v-on:click.prevent="upvote()">+</button>
+      <button v-on:click.prevent="downvote()">-</button>
       <router-link v-bind:to="'/answers/' + answer.id">Respond to this answer!</router-link>
       <div class="nested-answers">
         <answer v-for="nestedAnswer in answer.answers" :answer="nestedAnswer"></answer>
@@ -20,8 +20,6 @@
 
 <script>
 var axios = require("axios");
-import "@fortawesome/fontawesome-free/css/all.css";
-import "@fortawesome/fontawesome-free/js/all.js";
 
 export default {
   name: "answer",
