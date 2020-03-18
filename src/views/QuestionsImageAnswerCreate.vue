@@ -157,6 +157,7 @@ export default {
   },
 
   created: function() {
+    // var xhr = new XMLHttpRequest()
     axios
     .get("/api/questions/" + this.$route.params.id)
     .then(response => {
