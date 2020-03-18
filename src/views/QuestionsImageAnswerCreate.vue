@@ -1,5 +1,5 @@
 <template>
-  <div id="image-answer-create">
+  <div id="image-answer-create" class="container">
     <div class="container">
       <h1>{{question.title}}</h1>
     </div>
@@ -162,7 +162,7 @@ export default {
     .then(response => {
       // console.log(response.data);
       this.question = response.data;
-
+      console.log(this.question)
       fetch(response.data.image_url)
         .then(res => res.blob())
         .then(blob => {

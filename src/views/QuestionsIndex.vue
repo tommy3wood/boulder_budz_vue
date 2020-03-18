@@ -1,14 +1,14 @@
 <template>
   <div class="questions-index">
-    <h1 class="text-center mb-5">QUESTIONS</h1>
+    <h1 class="text-secondary text-center mb-5">QUESTIONS</h1>
     <p>===================================================================================================================</p>
 
-    <div v-for="question in sortQuestions(questions)">
+    <div  v-for="question in sortQuestions(questions)">
       <router-link v-bind:to="'/questions/' + question.id"> 
-        <h3 >{{ question.title }}</h3>
+        <h3 class="text-secondary">{{ question.title }}</h3>
       </router-link>
-      <h5>User: {{ question.op }}</h5>
-      <h5>Category: {{ question.category }}</h5>
+      <h5 class="text-secondary">User: {{ question.op }}</h5>
+      <h5 class="text-secondary">Category: {{ question.category }}</h5>
       <p>===================================================================================================================</p>
     </div>   
   </div>

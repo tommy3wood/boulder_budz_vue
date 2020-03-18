@@ -3,14 +3,14 @@
       <div>
         <img :src="answer.image_url" >
       </div>
-      <h6>User: {{ answer.answer_op }}</h6>
-      <h6>Upvotes: {{answer.upvotes}}</h6>
-      <h6>Downvotes: {{answer.downvotes}}</h6>
-      <h6>Response: {{ answer.content }}</h6>
-      <h6>Vote Count: {{ answer.vote_count }}</h6>
+      <h6 class="text-secondary">User: {{ answer.answer_op }}</h6>
+      <h6 class="text-secondary">Upvotes: {{answer.upvotes}}</h6>
+      <h6 class="text-secondary">Downvotes: {{answer.downvotes}}</h6>
+      <h6 class="text-secondary">Response: {{ answer.content }}</h6>
+      <h6 class="text-secondary">Vote Count: {{ answer.vote_count }}</h6>
       <button class="'fas fa-arrow-up'" v-on:click.prevent="upvote()">+</button>
       <button v-on:click.prevent="downvote()">-</button>
-      <router-link v-bind:to="'/answers/' + answer.id">Respond to this answer!</router-link>
+      <router-link class="text-secondary" v-bind:to="'/answers/' + answer.id">Respond to this answer!</router-link>
       <div class="nested-answers">
         <answer v-for="nestedAnswer in answer.answers" :answer="nestedAnswer"></answer>
       </div>

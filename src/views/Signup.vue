@@ -1,6 +1,6 @@
 <template>
   <div class="signup">
-    <div class="row">
+    <div class="container">
       <form v-on:submit.prevent="submit()">
         <h1 class="text-center mb-5">Signup</h1>
         <ul>

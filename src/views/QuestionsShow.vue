@@ -1,13 +1,13 @@
 <template>
-  <div class="questions-index">
+  <div class="questions-index container">
       <div>
         <img :src="question.image_url" v-bind:alt="question.title">
       </div>
-      <h1>Question</h1>
-      <h3>{{question.title}}</h3>
-      <h5>User: {{ question.op }}</h5>
-      <h5>Category: {{ question.category }}</h5>
-      <h5>Question Body: {{ question.content }}</h5>
+      <h1 class="text-secondary">Question</h1>
+      <h3 class="text-secondary">{{question.title}}</h3>
+      <h5 class="text-secondary">User: {{ question.op }}</h5>
+      <h5 class="text-secondary">Category: {{ question.category }}</h5>
+      <h5 class="text-secondary">Question Body: {{ question.content }}</h5>
       
       <div>
         <router-link v-bind:to="'/questions/' + question.id + '/edit'">Edit Question</router-link>
@@ -15,10 +15,10 @@
         <button v-on:click="destroyQuestion()">Delete</button>
       </div>
 
-      <h2>Answers</h2>
+      <h2 class="text-secondary">Answers</h2>
 
       <div class="first-level-answers">
-        <h4>Answer Tree:</h4>
+        <h4 class="text-secondary">Answer Tree:</h4>
         <answer v-for="nestedAnswer in question.answers" :answer="nestedAnswer"></answer>
       </div>
 
@@ -26,7 +26,7 @@
         <ul>
           <li class="text-danger" v-for="error in errors">{{ error }}</li>
         </ul>
-        <h5>Respond:</h5>
+        <h5 class="text-secondary">Respond:</h5>
         <div class="form-group">
           <input type="text" v-model="qa_content">
         </div>
