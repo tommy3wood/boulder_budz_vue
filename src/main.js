@@ -3,6 +3,8 @@ import App from './App.vue'
 import router from './router'
 import axios from "axios";
 import Editor from "vue-image-markup";
+import "bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 axios.defaults.baseURL = 
   process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/";
