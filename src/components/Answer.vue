@@ -37,7 +37,10 @@ export default {
       axios
       .post("/api/votes", clientParams)
       .then(response => {
-        this.answer.votes.push(response.data);
+        return axios.get("/api/answers/" + response.data.answer_id)
+        .then(response => {
+          this.answer = response.data;
+        })
       });
     },
     downvote: function(){
@@ -48,7 +51,8 @@ export default {
       axios
       .post("/api/votes", clientParams)
       .then(response => {
-        this.answer.votes.push(response.data);
+        this.answer.vote_count - 1;
+        // this.answer.votes.push(response.data);
       });
     },
   }
