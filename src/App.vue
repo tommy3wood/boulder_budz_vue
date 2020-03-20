@@ -2,7 +2,7 @@
   <div id="app">
     <!-- blogen header -->
     <div id="menu-content" class="menu-overlay">
-      <a id="menu-close-btn" class="close-btn"><i class="mdi mdi-close"></i></a>
+      <a href="javascript:void(0)" id="menu-close-btn" class="close-btn"><i class="mdi mdi-close"></i></a>
       <div class="menu-overlay-content">
         <div class="container">
           <div id="fullwidthmenu">
@@ -14,20 +14,9 @@
                 <li class="menu-item">
                   <router-link to="/Login">Login</router-link>
                 </li>
-                <li class="menu-item current-menu-item menu-item-has-children">
-                  <router-link to="/Logout">Logout</router-link> 
-                <ul class="sub-menu">
-                  <li class="menu-item">
-                    <a href="/blog.html">Right Sidebar</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="/blog-left-sidebar.html">Left Sidebar</a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="/blog-fullwidth.html">Full Width</a>
-                  </li>
-                </ul>
-                
+                <li class="menu-item">
+                  <router-link to="/Logout">Logout</router-link>
+                </li>
                 </li>             
                 <li class="menu-item">
                   <router-link to="/">Questions Index</router-link> 

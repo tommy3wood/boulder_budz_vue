@@ -1,7 +1,7 @@
 <template>
   <div id="image-answer-create" class="container">
     <div class="container">
-      <h1>{{question.title}}</h1>
+      <h1 class="text-secondary">{{question.title}}</h1>
     </div>
     <div class="editor-container">
       
@@ -49,7 +49,11 @@
           :iconClass="'fas fa-file-upload fa-lg'"
           :labelForUploadImage="true"
         />
-        <Tool :event="() => saveImage()" :iconClass="'fas fa-save fa-lg'" />
+
+        <Tool 
+          :event="() => saveImage()" 
+          :iconClass="'fas fa-save fa-lg'" 
+        />
           
       </div>
 
@@ -63,16 +67,17 @@
       <ul>
         <li class="text-danger" v-for="error in errors">{{ error }}</li>
       </ul>
-      <h5>Respond:</h5>
+      <h5 class="text-secondary">Respond:</h5>
       <div class="form-group">
         <input type="text" v-model="content">
       </div>
 
       <div>
         <label>Picture: </label>
+        <br>
         <input type="file" v-on:change="setFile($event)" ref="fileInput">
       </div>
-
+      <br>
       <input class="btn btn-info" type="submit" value="Create">
       </form>
 

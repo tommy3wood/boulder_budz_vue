@@ -72,7 +72,7 @@
         axios
           .post("/api/questions", formData)
           .then(response => {
-            this.$router.push("/questions");
+            this.$router.push("/categories/" + this.category);
           }).catch(error => {
             this.errors = error.response.data.errors;
           });
