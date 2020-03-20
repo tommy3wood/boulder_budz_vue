@@ -162,11 +162,9 @@ export default {
   },
 
   created: function() {
-    // var xhr = new XMLHttpRequest()
     axios
     .get("/api/questions/" + this.$route.params.id)
     .then(response => {
-      // console.log(response.data);
       this.question = response.data;
       console.log(this.question)
       fetch(response.data.image_url)

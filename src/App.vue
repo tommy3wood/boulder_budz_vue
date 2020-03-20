@@ -9,20 +9,49 @@
             <div class="menu-main-menu-container">
               <ul id="menu-main-menu" class="menu">
                 <li class="menu-item">
-                  <router-link to="/Signup" >Signup</router-link>
+                  <a href="/Signup" >Signup</a>
+                </li>
+  <!--               <li class="menu-item current-menu-item menu-item-has-children">
+                  <a>Account</a>
+                  <ul class="sub-menu">
+                    <li class="menu-item"><a href="/Login">Login</a></li>
+                    <li class="menu-item"><a href="/Logout">Logout</a></li>
+                    <li class="menu-item"><a href="/users/:id">Activity</a></li>
+                    <li class="menu-item"><a href="/users/:id/edit">Customize Profile</a></li>
+                  </ul>
+                </li>  -->
+
+ <!--                <li class="menu-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Account
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/Login">Login</a>
+                    <a class="dropdown-item" href="/Logout">Logout</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/users/:id">Activity</a>
+                    <a class="dropdown-item" href="/users/:id/edit">Customize</a>
+                  </div>
+                </li> -->
+
+                <li class="menu-item">
+                  <a href="/Login">Login</a>
                 </li>
                 <li class="menu-item">
-                  <router-link to="/Login">Login</router-link>
-                </li>
-                <li class="menu-item">
-                  <router-link to="/Logout">Logout</router-link>
+                  <a href="/Logout">Logout</a>
                 </li>
                 </li>             
                 <li class="menu-item">
-                  <router-link to="/">Questions Index</router-link> 
+                  <a href="/">Questions Index</a> 
                 </li>
                 <li class="menu-item">
-                  <router-link to="/questions/new">New Question</router-link>
+                  <a href="/questions/new">New Question</a>
+                </li>
+                <li class="menu-item">
+                  <a href="/users/:id">User Activity</a>
+                </li>
+                <li class="menu-item">
+                  <a href="/users/:id/edit">Customize Profile</a>
                 </li>
               </ul>
             </div>                    

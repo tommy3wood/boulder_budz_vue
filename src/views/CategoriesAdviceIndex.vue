@@ -1,4 +1,4 @@
-<template>
+ <template>
   <div class="questions-advice-index">
     <h1 class="text-secondary text-center mb-5">Advice</h1>
     <p>===================================================================================================================</p>
@@ -10,6 +10,7 @@
         </h3>
       </router-link>
       <h5 class="text-secondary">User: {{ question.op }}</h5>
+      <h5 class="text-secondary">User: {{ question.created_at }}</h5>
       <h5 class="text-secondary">Category: {{ question.category }}</h5>
       <p>===================================================================================================================</p>
     </div>   
@@ -42,9 +43,6 @@
           return question.category === "advice";
         });
       },
-      sortQuestions(questionsArray) {
-        return _.orderBy(questionsArray, 'created_at', 'desc')
-      }
     }
   };
 </script>

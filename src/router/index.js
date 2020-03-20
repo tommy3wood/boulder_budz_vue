@@ -22,6 +22,8 @@ import AnswersEdit from '../views/AnswersEdit.vue'
 
 import QuestionsImageAnswerCreate from '../views/QuestionsImageAnswerCreate.vue'
 
+import UserEdit from '../views/UserEdit.vue'
+import UserShow from '../views/UserShow.vue'
 
 
 Vue.use(VueRouter)
@@ -43,12 +45,13 @@ const routes = [
   {path: '/questions/new', name: 'questions-new', component: QuestionsNew},
   {path: '/questions/:id', name: 'questions-show', component: QuestionsShow},
   {path: '/questions/:id/edit', name: 'questions-edit', component: QuestionsEdit},
-
+  {path: '/questions/:id/image', name: 'image-answer-create', component: QuestionsImageAnswerCreate},
 
   {path: '/answers/:id', name: 'answers-show', component: AnswersShow},
   {path: '/answers/:id/edit', name: 'answers-edit', component: AnswersEdit},
 
-  {path: '/questions/:id/image', name: 'image-answer-create', component: QuestionsImageAnswerCreate}
+  {path: '/users/:id', name: 'users-show', component: UserShow},
+  {path: '/users/:id/edit', name: 'user-edit', component: UserEdit}
 ]
 
 const router = new VueRouter({
