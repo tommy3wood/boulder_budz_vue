@@ -1,4 +1,4 @@
-<template>
+ <template>
   <div id="app">
     <!-- blogen header -->
     <div id="menu-content" class="menu-overlay">
@@ -11,29 +11,6 @@
                 <li class="menu-item">
                   <a href="/Signup" >Signup</a>
                 </li>
-  <!--               <li class="menu-item current-menu-item menu-item-has-children">
-                  <a>Account</a>
-                  <ul class="sub-menu">
-                    <li class="menu-item"><a href="/Login">Login</a></li>
-                    <li class="menu-item"><a href="/Logout">Logout</a></li>
-                    <li class="menu-item"><a href="/users/:id">Activity</a></li>
-                    <li class="menu-item"><a href="/users/:id/edit">Customize Profile</a></li>
-                  </ul>
-                </li>  -->
-
- <!--                <li class="menu-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Account
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/Login">Login</a>
-                    <a class="dropdown-item" href="/Logout">Logout</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/users/:id">Activity</a>
-                    <a class="dropdown-item" href="/users/:id/edit">Customize</a>
-                  </div>
-                </li> -->
-
                 <li class="menu-item">
                   <a href="/Login">Login</a>
                 </li>
@@ -51,7 +28,7 @@
                   <a href="/users/:id">User Activity</a>
                 </li>
                 <li class="menu-item">
-                  <a href="/users/:id/edit">Customize Profile</a>
+                  <a href="/users/ + this.$parent.userId">Profile</a>
                 </li>
               </ul>
             </div>                    
@@ -66,8 +43,8 @@
             <div class="row">
               <div class="col-lg-6">
                 <div class="topbar-left">
-                  <ul class="list-inline mb-0">
-                    <li class="list-inline-item"><a href="mailto:xpanthersolutions@gmail.com" class="contact-list-item text-dim"><i class="mdi mdi-email"></i>literallydonaldtrump@whitehouse.gov</a></li>                    
+                  <ul v-if="userEmail" class="list-inline mb-0">
+                    <li class="list-inline-item mdi mdi-email text-secondary">Logged in as <a href="/users/ this.$parent.userId">{{ userEmail }}</a></li>                    
                   </ul>
                 </div>
               </div>
@@ -93,7 +70,7 @@
               </div>
               <div class="col-6 col-md-6">
                 <div class="logobar text-center">
-                  <a href="/"><img src="/images/logo_small.png" class="img img-responsive" alt="logo"/></a>
+                  <a href="/"><img src="/images/logo_small_3.png" class="img img-responsive" alt="logo"/></a>
                 </div>
               </div>
               <div class="col-3 col-md-3">
@@ -121,7 +98,7 @@
             <div class="row">
                 <div class="col-lg-12">
                   <div class="footer-logo">
-                       <img src="/images/logo_small.png" class="img img-responsive" alt="logo"/>
+                       <img src="/images/logo_small_3.png" class="img img-responsive" alt="logo"/>
                     </div>
                     <div class="footer-social">
                         <ul class="list-inline social mb-0">
@@ -141,6 +118,27 @@
     </footer>
   </div>
 </template>
+ 
+<script>
+export default {
+  data: function() {
+    return {
+      userEmail: "",
+      userId: "",
+    };
+  },
+  created: function() {
+    var email = localStorage.getItem("userEmail");
+    if (email) {
+      this.userEmail = email;
+    }
+    var id = localStorage.getItem("userId");
+    if (id) {
+      this.userId = id;
+    }
+  }
+}
+</script> 
 
 <style>
 </style>
