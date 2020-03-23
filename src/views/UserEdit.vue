@@ -62,6 +62,7 @@ export default {
       axios
         .patch("/api/users/" + this.$parent.userId, clientParams)
         .then(response => {
+          console.log(clientParams);
           this.$router.push("/users/" + this.$route.params.id);
         }).catch(error => {
             this.errors = error.response.data.errors;

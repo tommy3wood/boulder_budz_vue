@@ -21,7 +21,7 @@
       </router-link>
       <p>===================================================================================================================</p>
     </div>
-    <router-link class="btn btn-primary" v-bind:to="'/users/' + this.$parent.userId + '/edit'">Edit Profile</router-link>
+    <router-link v-if="this.$parent.userEmail === user.email" class="btn btn-primary" v-bind:to="'/users/' + this.$parent.userId + '/edit'">Edit Profile</router-link>
   </div>
 
 </template>
@@ -37,7 +37,7 @@ export default {
   },
   created: function() {
     axios
-      .get("/api/users/" + this.$parent.userId)
+      .get("/api/users/" + this.$route.params.id)
       .then(response => {
         this.user = response.data;
         console.log(this.user);

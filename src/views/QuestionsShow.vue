@@ -9,7 +9,7 @@
       <h5 class="text-secondary">Category: {{ question.category }}</h5>
       <h5 class="text-secondary">Question Body: {{ question.content }}</h5>
       
-      <div>
+      <div v-if="this.$parent.userEmail === question.op">
         <router-link v-bind:to="'/questions/' + question.id + '/edit'">Edit Question</router-link>
         <br>
         <button v-on:click="destroyQuestion()">Delete</button>

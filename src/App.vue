@@ -24,12 +24,9 @@
                 <li class="menu-item">
                   <a href="/questions/new">New Question</a>
                 </li>
-                <li class="menu-item">
-                  <a href="/users/:id">User Activity</a>
-                </li>
-                <li class="menu-item">
-                  <a href="/users/ + this.$parent.userId">Profile</a>
-                </li>
+                <li>
+                  <a href="'/users/' + this.userId">User Profile</a>
+                </li> 
               </ul>
             </div>                    
           </div>
@@ -70,7 +67,7 @@
               </div>
               <div class="col-6 col-md-6">
                 <div class="logobar text-center">
-                  <a href="/"><img src="/images/logo_small_3.png" class="img img-responsive" alt="logo"/></a>
+                  <a href="/"><img src="/logo_small_03.png" class="img img-responsive" alt="logo"/></a>
                 </div>
               </div>
               <div class="col-3 col-md-3">
@@ -98,7 +95,7 @@
             <div class="row">
                 <div class="col-lg-12">
                   <div class="footer-logo">
-                       <img src="/images/logo_small_3.png" class="img img-responsive" alt="logo"/>
+                       <img src="/logo_small_03.png" class="img img-responsive" alt="logo"/>
                     </div>
                     <div class="footer-social">
                         <ul class="list-inline social mb-0">

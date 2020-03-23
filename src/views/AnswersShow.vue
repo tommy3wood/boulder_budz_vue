@@ -1,21 +1,22 @@
 <template>
   <div class="answers-index">
-      <h5>User: {{ answer.answer_op }}</h5>
-      <h5>Answer: {{ answer.content }}</h5>
+      <h5 class="text-secondary">User: {{ answer.answer_op }}</h5>
+      <h5 class="text-secondary">Answer: {{ answer.content }}</h5>
       <router-link v-bind:to="answer.parent_route">Answer Context</router-link>
-      <div>
+      <div v-if="this.$parent.userEmail === answer.answer_op">
         <router-link v-bind:to="'/answers/' + answer.id + '/edit'">Edit Answer</router-link>
         <br>
         <button v-on:click="destroyAnswer()">Delete</button>
       </div>
       <form v-on:submit.prevent="createAnswer()">
 
+        <h5 class="text-secondary">Reply to answer</h5>
         <ul>
           <li class="text-danger" v-for="error in errors">{{ error }}</li>
         </ul>
 
         <div class="form-group">
-          <input type="text" v-model="content">
+          <input type="text" v-model="content_aa">
         </div>
 
         <input class="btn btn-info" type="submit" value="Respond">
@@ -32,13 +33,16 @@
   export default {
     data: function() {
       return {
-        answer: []
+        answer: [],
+        errors: [],
+        content_aa: ""
       };
     },
     created: function() {
       axios
         .get("/api/answers/" + this.$route.params.id)
         .then(response => {
+          console.log(response.data)
           this.answer = response.data;
         });
     },
@@ -47,7 +51,7 @@
         var clientParams = {
           answerable_id: this.answer.id,
           answerable_type: "Answer",
-          content: this.content
+          content: this.content_aa
         };
 
         axios

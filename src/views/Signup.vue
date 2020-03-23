@@ -25,12 +25,6 @@
                     }" 
             v-model="passwordConfirmation"
           >
-   <!--        <div class="valid-feedback">
-            Passwords Match
-          </div>
-          <div class="invalid-feedback">
-            Password must match password confirmation
-          </div> -->
         </div>
         <div class="form-group">
           <label>Phone:</label>
