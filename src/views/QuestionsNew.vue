@@ -34,7 +34,7 @@
           <input type="file" v-on:change="setFile($event)" ref="fileInput">
         </div>
 
-        <input class="btn btn-info mb-5 mt-5" type="submit" value="Create">
+        <input class="btn btn-primary mb-5 mt-5" type="submit" value="Create">
       </form>
 
    

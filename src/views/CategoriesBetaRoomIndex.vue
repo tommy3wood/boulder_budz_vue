@@ -1,6 +1,6 @@
 <template>
   <div class="questions-beta-room-index container">
-    <h1 class="text-secondary text-center mt-5 mb-5 advice-header">Beta Room</h1>
+    <h1 class="text-center mt-5 mb-5 br-header">Beta Room</h1>
     
     <div  v-for="question in betaRoomQuestions(questions)" class="blog-list-box border-gradient-pri mb-30">
       <div class="blog-head">
@@ -34,6 +34,14 @@
 </template>
 
 <style>
+.br-header {
+  color: #fff;
+  text-shadow: 2px 2px #e45bd2;
+}
+.br-question-title {
+  color: #e45bd2;
+  text-decoration: underline;
+}
 </style>
 
 <script>

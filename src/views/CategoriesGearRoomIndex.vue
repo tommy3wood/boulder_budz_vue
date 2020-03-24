@@ -1,7 +1,7 @@
 <template>
   <div class="categories-gear-room-index container">
-    <h1 class="text-secondary text-center mb-5 advice-header">Gear Room</h1>
-    <div  v-for="question in gearRoomQuestions(questions)" class="blog-list-box border-gradient-info mb-30">
+    <h1 class="text-center mt-5 mb-5 gr-header">Gear Room</h1>
+    <div  v-for="question in gearRoomQuestions(questions)" class="blog-list-box border-gradient-def mb-30">
       <div class="blog-head">
         <div class="index-img-container">
           <img  class="index-img" :src="question.image_url" alt="blog-featured-img">
@@ -11,7 +11,7 @@
       <div class="blog-content">
         <div class="blog-content-body">
           <router-link v-bind:to="'/questions/' + question.id"> 
-            <h3 class="blog-title mb-20 question-title">
+            <h3 class="blog-title mb-20 gr-question-title">
               {{ question.title }}
             </h3>
           </router-link>
@@ -32,6 +32,14 @@
 </template>
 
 <style>
+.gr-header {
+  color: #fff;
+  text-shadow: 2px 2px #30d06e;
+}
+.gr-question-title {
+  color: #30d06e;
+  text-decoration: underline;
+}
 </style>
 
 <script>

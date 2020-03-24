@@ -5,7 +5,7 @@
     
     <div  v-for="question in adviceQuestions(questions)" class="blog-list-box border-gradient-info mb-30">
       <div class="blog-head">
-        <div class="index-img-container">
+        <div class="index-img">
           <img  class="index-img" :src="question.image_url" alt="blog-featured-img">
         </div>
         <!-- :src="question.image_url" -->
@@ -13,7 +13,7 @@
       <div class="blog-content">
         <div class="blog-content-body">
           <router-link v-bind:to="'/questions/' + question.id"> 
-            <h3 class="blog-title mb-20 question-title">
+            <h3 class="blog-title mb-20 advice-question-title">
               {{ question.title }}
             </h3>
           </router-link>
@@ -35,6 +35,14 @@
 </template>
 
 <style>
+.advice-header {
+  color: #fff;
+  text-shadow: 2px 2px #ff6e7f;
+}
+.advice-question-title {
+  color: #ff6e7f;
+  text-decoration: underline;
+}
 </style>
 
 <script>

@@ -20,7 +20,7 @@
                 </li>
                 </li>             
                 <li class="menu-item">
-                  <a href="/">Questions Index</a> 
+                  <a href="/">Categories</a> 
                 </li>
                 <li class="menu-item">
                   <a href="/questions/new">New Question</a>

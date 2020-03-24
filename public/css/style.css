@@ -30,21 +30,21 @@ Table of CSS
 @import url('https://fonts.googleapis.com/css?family=Lato:400,400i,500,600,700');
 
 /*custom*/
-.advice-header {
-  color: #ff6e7f;
-}
-.question-title {
-  color: #ff6e7f;
-  text-decoration: underline;
-}
-.br-question-title {
-  color: #e45bd2;
-  text-decoration: underline;
-}
+
+
 .index-img {
-  max-height: 200px;
-  max-width: 100%;
-  overflow: hidden;
+  display:block;
+  height:150px;/*set an height */
+  line-height:200px;/* set the baseline at 100px from top*/
+  overflow:hidden;
+}
+
+.index-img  img {
+  position: relative;
+  margin: -50% auto;/* virtualy height needed turn don to zero */
+  width: 100%;/* height will follow within image ratio */
+  height:auto;/* to overrride attribute height set in tag */
+  vertical-align: center;
 }
 /*end custom*/
 

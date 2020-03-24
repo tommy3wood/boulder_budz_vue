@@ -1,10 +1,10 @@
 <template>
   <div class="questions-feedback-index container">
-    <h1 class="text-secondary text-center mb-5 advice-header">Feedback</h1>
-    <div  v-for="question in feedbackQuestions(questions)" class="blog-list-box border-gradient-info mb-30">
+    <h1 class="text-center mt-5 mb-5 feedback-header">FEEDBACK</h1>
+    <div  v-for="question in feedbackQuestions(questions)" class="blog-list-box border-gradient-reg mb-30">
       <div class="blog-head">
-        <div class="index-img-container">
-          <img  class="index-img" :src="question.image_url" alt="blog-featured-img">
+        <div class="index-img">
+          <img :src="question.image_url" alt="blog-featured-img">
         </div>
         <!-- :src="question.image_url" -->
       </div>
@@ -32,6 +32,14 @@
 </template>
 
 <style>
+.feedback-header {
+  color: #fff;
+  text-shadow: 2px 2px #02d9ff;
+}
+.question-title {
+  color: #02d9ff;
+  text-decoration: underline;
+}
 </style>
 
 <script>
