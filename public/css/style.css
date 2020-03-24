@@ -8,6 +8,7 @@
 ====================
 Table of CSS
 ====================
+0. Custom (all 3wood, baby)
 1. Common      
 2. Back to top       
 3. Header     
@@ -28,11 +29,30 @@ Table of CSS
 @import url('https://fonts.googleapis.com/css?family=Poppins:700');
 @import url('https://fonts.googleapis.com/css?family=Lato:400,400i,500,600,700');
 
+/*custom*/
+.advice-header {
+  color: #ff6e7f;
+}
+.question-title {
+  color: #ff6e7f;
+  text-decoration: underline;
+}
+.br-question-title {
+  color: #e45bd2;
+  text-decoration: underline;
+}
+.index-img {
+  max-height: 200px;
+  max-width: 100%;
+  overflow: hidden;
+}
+/*end custom*/
+
 body {
     font-family: 'Lato', sans-serif;
     font-weight: 400;
     background-color: #23232F;
-    color:#fff;
+    /*color:#fff;*/
 }
 h1,h2,h3,h4,h5,h6 {
     font-family: 'Poppins', sans-serif;
@@ -208,6 +228,7 @@ button:focus {
 3. Header CSS
 ===================
 */
+
 .header {
     background-color: #3d4853;
 }
@@ -235,11 +256,11 @@ button:focus {
     border: none;
     padding: 0;
     font-size: 35px;
-    color:#fff;
+    color: white;
     cursor: pointer;
 }
 .logobar img {
-    width:180px;
+    width:250px;
     margin-top: 10px;
 }
 
@@ -507,9 +528,12 @@ button:focus {
 */
 .content-section {
     padding:30px 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 .blog-list-box, .blog-details-box {
     background-color: #16161E;
+    align-items: center;
 }
 .blog-head img {
     width:100%;
@@ -533,7 +557,18 @@ button:focus {
     font-size: 14px;
     font-weight: 700;
 }
-.blog-title {
+.blog-title-info {
+    font-size: 22px;
+    color: #ff6e7f;
+}
+.blog-title-pri {
+    font-size: 22px;
+    color: #e45bd2;
+}
+.blog-title-def {
+    font-size: 22px;
+}
+.blog-title-reg {
     font-size: 22px;
 }
 .blog-link .blog-content-date p {

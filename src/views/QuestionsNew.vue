@@ -1,15 +1,15 @@
 <template>
-  <div class="questions-new">
+  <div class="questions-new container">
     
       <form v-on:submit.prevent="createQuestion()">
-        <h1 class="text-center mb-5">New Question</h1>
+        <h1 class="text-center mt-5 mb-5">New Question</h1>
 
         <ul>
           <li class="text-danger" v-for="error in errors">{{ error }}</li>
         </ul>
 
         <div class="form-group">
-          <span>Category: </span>
+          <label class="mr-2">Category: </label>
           <select v-model="category">
             <option disabled value="">Please select one</option>
             <option value="advice">advice</option>
@@ -19,7 +19,7 @@
           </select>
         </div>
 
-        <div class="form-group">
+        <div class="form-group mt-3">
           <label>Question Title: </label>
           <input class="form-control" type="text" v-model="title">
         </div>
@@ -30,11 +30,11 @@
         </div>
 
         <div>
-          <label>Picture: </label>
+          <label class="mr-2">Picture: </label>
           <input type="file" v-on:change="setFile($event)" ref="fileInput">
         </div>
 
-        <input class="btn btn-info" type="submit" value="Create">
+        <input class="btn btn-info mb-5 mt-5" type="submit" value="Create">
       </form>
 
    

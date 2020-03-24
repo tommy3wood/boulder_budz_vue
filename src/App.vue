@@ -1,4 +1,5 @@
  <template>
+
   <div id="app">
     <!-- blogen header -->
     <div id="menu-content" class="menu-overlay">
@@ -137,5 +138,4 @@ export default {
 }
 </script> 
 
-<style>
-</style>
+
