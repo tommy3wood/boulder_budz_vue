@@ -3,95 +3,97 @@
     <div class="container">
       <h1 class="text-secondary">{{question.title}}</h1>
     </div>
-    <div class="editor-container">
-      
-      <div class="editor">
-        <div class="current-color" :style="{ backgroundColor: color }"></div>
-        <Tool :event="() => undo()" :iconClass="'fas fa-undo-alt fa-lg'" />
-        <Tool :event="() => redo()" :iconClass="'fas fa-redo-alt fa-lg'" />
-        <Tool :event="() => clear()" :iconClass="'fas fa-trash-alt fa-lg'" />
-        
-        <Tool
-        :event="() => setTool('freeDrawing')"
-        :iconClass="'fas fa-pencil-alt fa-lg'"
-        :class="{ 'active-tool': currentActiveMethod === 'freeDrawing' }" 
-        />
-        <Tool
-          :event="() => setTool('text')"
-          :iconClass="'fas fa-font fa-lg'"
-          :class="{ 'active-tool': currentActiveMethod === 'text' }"
-        />
-        <Tool
-          :event="() => setTool('arrow')"
-          :iconClass="'fas fa-long-arrow-alt-down fa-lg'"
-          :class="{ 'active-tool': currentActiveMethod === 'arrow' }"
-        />
-        <Tool
-          :event="() => setTool('selectMode')"
-          :iconClass="'fas fa-arrows-alt fa-lg'"
-          :class="{ 'active-tool': currentActiveMethod === 'selectMode' }"
-        />
-        <Tool
-          :event="() => applyCropping()"
-          :iconClass="'far fa-check-circle fa-lg'"
-          v-show="croppedImage"
-          :class="{ 'active-tool': currentActiveMethod === 'crop' }"
-        />
 
-        <Tool
-          :event="() => cropImage()"
-          :iconClass="'fas fa-crop-alt fa-lg'"
-          v-show="!croppedImage"
-        />
-
-        <Tool
-          :event="e => uploadImage(e)"
-          :iconClass="'fas fa-file-upload fa-lg'"
-          :labelForUploadImage="true"
-        />
-
-        <Tool 
-          :event="() => saveImage()" 
-          :iconClass="'fas fa-save fa-lg'" 
-        />
+    <div id="app" class="main">
+      <div class="editor-container">
+        <div class="editor">
+          <div class="current-color" :style="{ backgroundColor: color }"></div>
+          <Tool :event="() => undo()" :iconClass="'fas fa-undo-alt fa-lg'" />
+          <Tool :event="() => redo()" :iconClass="'fas fa-redo-alt fa-lg'" />
+          <Tool :event="() => clear()" :iconClass="'fas fa-trash-alt fa-lg'" />
           
-      </div>
+          <Tool
+          :event="() => setTool('freeDrawing')"
+          :iconClass="'fas fa-pencil-alt fa-lg'"
+          :class="{ 'active-tool': currentActiveMethod === 'freeDrawing' }" 
+          />
+          <Tool
+            :event="() => setTool('text')"
+            :iconClass="'fas fa-font fa-lg'"
+            :class="{ 'active-tool': currentActiveMethod === 'text' }"
+          />
+          <Tool
+            :event="() => setTool('arrow')"
+            :iconClass="'fas fa-long-arrow-alt-down fa-lg'"
+            :class="{ 'active-tool': currentActiveMethod === 'arrow' }"
+          />
+          <Tool
+            :event="() => setTool('selectMode')"
+            :iconClass="'fas fa-arrows-alt fa-lg'"
+            :class="{ 'active-tool': currentActiveMethod === 'selectMode' }"
+          />
+          <Tool
+            :event="() => applyCropping()"
+            :iconClass="'far fa-check-circle fa-lg'"
+            v-show="croppedImage"
+            :class="{ 'active-tool': currentActiveMethod === 'crop' }"
+          />
 
-      <Editor 
-        :canvasWidth="canvasWidth" 
-        :canvasHeight="canvasHeight" 
-        ref="editor"
-      />
+          <Tool
+            :event="() => cropImage()"
+            :iconClass="'fas fa-crop-alt fa-lg'"
+            v-show="!croppedImage"
+          />
 
-      <form v-on:submit.prevent="createAnswer()">
-      <ul>
-        <li class="text-danger" v-for="error in errors">{{ error }}</li>
-      </ul>
-      <h5 class="text-secondary">Respond:</h5>
-      <div class="form-group">
-        <input type="text" v-model="content">
-      </div>
+          <Tool
+            :event="e => uploadImage(e)"
+            :iconClass="'fas fa-file-upload fa-lg'"
+            :labelForUploadImage="true"
+          />
 
-      <div>
-        <label>Picture: </label>
+          <Tool 
+            :event="() => saveImage()" 
+            :iconClass="'fas fa-save fa-lg'" 
+          />
+            
+        </div>
+
+        <Editor 
+          :canvasWidth="canvasWidth" 
+          :canvasHeight="canvasHeight" 
+          ref="editor"
+        />
+
+        <form v-on:submit.prevent="createAnswer()">
+        <ul>
+          <li class="text-danger" v-for="error in errors">{{ error }}</li>
+        </ul>
+        <h5 class="text-secondary">Respond:</h5>
+        <div class="form-group">
+          <input type="text" v-model="content">
+        </div>
+
+        <div>
+          <label>Picture: </label>
+          <br>
+          <input type="file" v-on:change="setFile($event)" ref="fileInput">
+        </div>
         <br>
-        <input type="file" v-on:change="setFile($event)" ref="fileInput">
+        <input class="btn btn-info" type="submit" value="Create">
+        </form>
+
       </div>
-      <br>
-      <input class="btn btn-info" type="submit" value="Create">
-      </form>
 
-    </div>
-
-    <div class="colors">
-      <ColorPicker :color="'#e40000'" :event="changeColor" />
-      <ColorPicker :color="'#e8eb34'" :event="changeColor" />
-      <ColorPicker :color="'#a834eb'" :event="changeColor" />
-      <ColorPicker :color="'#65c31a'" :event="changeColor" />
-      <ColorPicker :color="'#34b7eb'" :event="changeColor" />
-      <ColorPicker :color="'#eb34df'" :event="changeColor" />
-      <ColorPicker :color="'#1a10ad'" :event="changeColor" />
-      <ColorPicker :color="'#000000'" :event="changeColor" />
+      <div class="icon-bar colors">
+        <ColorPicker :color="'#e40000'" :event="changeColor" />
+        <ColorPicker :color="'#e8eb34'" :event="changeColor" />
+        <ColorPicker :color="'#a834eb'" :event="changeColor" />
+        <ColorPicker :color="'#65c31a'" :event="changeColor" />
+        <ColorPicker :color="'#34b7eb'" :event="changeColor" />
+        <ColorPicker :color="'#eb34df'" :event="changeColor" />
+        <ColorPicker :color="'#1a10ad'" :event="changeColor" />
+        <ColorPicker :color="'#000000'" :event="changeColor" />
+      </div>
     </div>
   </div>
 </template>
@@ -104,6 +106,7 @@ import Tool from "../components/Tool/Tool.vue";
 import ColorPicker from "../components/ColorPicker/ColorPicker.vue";
 import "@fortawesome/fontawesome-free/css/all.css";
 import "@fortawesome/fontawesome-free/js/all.js";
+// import "../public/app.scss";
 
 export default {
   name: "app",
@@ -244,48 +247,49 @@ export default {
 </script>
 
 <style lang="scss">
-.main {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 50px;
-  display: flex;
-  justify-content: center;
-  .editor-container {
+  
+  .main {
+    font-family: "Avenir", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 50px;
     display: flex;
-    flex-direction: column;
-    .editor {
+    justify-content: center;
+    .editor-container {
       display: flex;
-      justify-content: space-between;
-      .current-color {
-        border-radius: 5px;
-        min-width: 28px;
-        min-height: 28px;
+      flex-direction: column;
+      .editor {
+        display: flex;
+        justify-content: space-between;
+        .current-color {
+          border-radius: 5px;
+          min-width: 28px;
+          min-height: 28px;
+        }
+        .active-tool {
+          cursor: pointer;
+          color: #4287f5;
+        }
       }
-      .active-tool {
-        cursor: pointer;
-        color: #4287f5;
-      }
+    }
+
+    .colors {
+      display: flex;
+      flex-direction: column;
+      margin: 40px 25px 0 25px;
+      align-items: center;
+      justify-content: center;
     }
   }
 
-  .colors {
-    display: flex;
-    flex-direction: column;
-    margin: 40px 25px 0 25px;
-    align-items: center;
-    justify-content: center;
+
+  .custom-editor {
+    margin-top: 20px;
   }
-}
 
-
-.custom-editor {
-  margin-top: 20px;
-}
-
-canvas {
-    border: 1px solid #00000021;
-  }
+  canvas {
+      border: 1px solid #00000021;
+    }
 </style>
