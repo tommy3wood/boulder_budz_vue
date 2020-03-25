@@ -1,20 +1,26 @@
 <template>
-  <div class="answer">
-      <div>
-        <img :src="updateAnswer.image_url" >
-      </div>
-      <h6 class="text-secondary">User: {{ updateAnswer.answer_op }}</h6>
-      <h6 class="text-secondary">Upvotes: {{updateAnswer.upvotes}}</h6>
-      <h6 class="text-secondary">Downvotes: {{updateAnswer.downvotes}}</h6>
-      <h6 class="text-secondary">Response: {{ updateAnswer.content }}</h6>
-      <h6 class="text-secondary">Vote Count: {{ updateAnswer.vote_count }}</h6>
-      <button class="'fas fa-arrow-up'" v-on:click.prevent="upvote()">+</button>
-      <button v-on:click.prevent="downvote()">-</button>
-      <router-link class="text-secondary" v-bind:to="'/answers/' + updateAnswer.id">Respond to this answer!</router-link>
-      <div class="nested-answers">
-        <answer v-for="nestedAnswer in answer.answers" :answer="nestedAnswer"></answer>
-      </div>
-    </div>
+  <div class="answer comment-list">
+    <ol class="media-list list-unstyled">
+      <li class="comment even depth-1">
+        <div class="media">
+          <div class="row">            
+              <div class="col-sm-1" style="font-size: 30px; color:#606060; text-align: center;">
+                  <span v-on:click.prevent="upvote()" class="mdi mdi-arrow-up-bold-circle-outline col-md-12"></span>
+                  <span class="col-md-12">{{ updateAnswer.vote_count }}</span>
+                  <span v-on:click.prevent="downvote()" class="mdi mdi-arrow-down-bold-circle-outline col-md-12"></span>
+              </div>
+          </div>
+          <div class="media-body">
+            <img v-if="updateAnswer.image_url" :src="updateAnswer.image_url" height="150" width="150">
+            <h4 class="media-heading">{{ updateAnswer.answer_op }}</h4>
+            <p class="text-white">{{ updateAnswer.content }}</p>
+            <router-link rel="nofollow" class="comment-reply-link text-dim mb-5" v-bind:to="'/answers/' + updateAnswer.id"><i class="mdi mdi-reply mr5"></i> Reply!</router-link>
+            <answer v-for="nestedAnswer in answer.answers" :answer="nestedAnswer"></answer>   
+            
+          </div>
+        </div>
+      </li>          
+    </ol>
   </div>
 </template>
 

@@ -1,44 +1,84 @@
 <template>
   <div class="questions-index container">
-      <div>
+    <div class="blog-details-box border-gradient-info mb-30">
+      <div class="blog-head mt-5">
         <img :src="question.image_url" v-bind:alt="question.title">
       </div>
-      <h1 class="text-secondary">Question</h1>
-      <h3 class="text-secondary">{{question.title}}</h3>
-      <h5 class="text-secondary">User: {{ question.op }}</h5>
-      <h5 class="text-secondary">Category: {{ question.category }}</h5>
-      <h5 class="text-secondary">Question Body: {{ question.content }}</h5>
-      
-      <div v-if="this.$parent.userEmail === question.op">
-        <router-link v-bind:to="'/questions/' + question.id + '/edit'">Edit Question</router-link>
-        <br>
-        <button v-on:click="destroyQuestion()">Delete</button>
-      </div>
+      <div class="blog-content">
+        <div class="blog-content-head">
+          <div class="row">
+            <div class="col-sm-7">
+              <div class="blog-content-cate">
+                <ul class="list-inline">
+                  <li class="list-inline"><a href="/Categories/advice" class="btn-gradient-cate-info">{{ question.category }}</a></li>
+                </ul>
+              </div>
+              <div class="col-sm-5">
+                <div class="blog-content-date">
+                  <p>{{question.created_at}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="blog-content-body">
+            <h2 class="blog-title mb-20">{{question.title}}</h2>
+            <h6>{{question.op}}</h6>
+            <p class="text-white">{{question.content}}</p>
+            <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-      <h2 class="text-secondary">Answers</h2>
+            <div v-if="this.$parent.userEmail === question.op">
+              <router-link class="btn mb-2" v-bind:to="'/questions/' + question.id + '/edit'">Edit Question</router-link>
+              <br>
+              <button class="btn danger" v-on:click="destroyQuestion()">Delete</button>
+            </div>
 
-      <div class="first-level-answers">
-        <h4 class="text-secondary">Answer Tree:</h4>
-        <answer v-for="nestedAnswer in question.answers" :answer="nestedAnswer"></answer>
-      </div>
+            <blockquote class="blockquote m-5">
+              <h1>Respond to this post:</h1>
+              <form v-on:submit.prevent="createQuestionAnswer()">
+                <ul>
+                  <li class="text-danger" v-for="error in errors">{{ error }}</li>
+                </ul>
+                
+                <div class="form-group">
+                  <label class="text-dim mr-2">Text Response:</label>
+                  <input type="text" v-model="qa_content">
+                </div>
 
-      <form v-on:submit.prevent="createQuestionAnswer()">
-        <ul>
-          <li class="text-danger" v-for="error in errors">{{ error }}</li>
-        </ul>
-        <h5 class="text-secondary">Respond:</h5>
-        <div class="form-group">
-          <input type="text" v-model="qa_content">
+                <input class="btn btn-pri mb-1 mt-1" type="submit" value="Respond">
+              </form>
+              <router-link class="btn btn-pri mb-1 mt-1" v-bind:to="'/questions/' + question.id + '/image'">Image Response</router-link>
+            </blockquote>
+
+          </div>
         </div>
+      </div>
+      
 
-        <input class="btn btn-info" type="submit" value="Respond">
-      </form>
-      <router-link v-bind:to="'/questions/' + question.id + '/image'">Image Edit</router-link>
 
+      
+    </div>
+
+
+    <div class="first-level-answers comment-box border-gradient-info mb-30">
+      <div class="comment-title">
+        <h2>Answers</h2>
+      </div>
+      <div class="comment-list">
+        <answer v-for="nestedAnswer in question.answers" :answer="nestedAnswer"></answer>
+      </div>  
+    </div>
+
+      
   </div>
 </template>
 
 <style>
+
 </style>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="questions-edit">
+  <div class="questions-edit container">
     
       <form v-on:submit.prevent="updateAnswer()">
         <h1 class="text-center mb-5">Edit Answer</h1>
@@ -8,14 +8,12 @@
           <li class="text-danger" v-for="error in errors">{{ error }}</li>
         </ul>
 
- 
-        <h2>{{answer.answer_op}}</h2>
         <div class="form-group">
           <label>Answer: </label>
           <input class="form-control" type="text" v-model="answer.content">
         </div>
 
-        <input class="btn btn-info" type="submit" value="Create">
+        <input class="btn btn-info" type="submit" value="Update">
       </form>
 
    

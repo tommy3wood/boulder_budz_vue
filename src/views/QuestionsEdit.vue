@@ -1,5 +1,5 @@
 <template>
-  <div class="questions-edit">
+  <div class="questions-edit container">
     
       <form v-on:submit.prevent="updateQuestion()">
         <h1 class="text-center mb-5">New Question</h1>
@@ -9,8 +9,8 @@
         </ul>
 
         <div class="form-group">
-          <span>Category: </span>
-          <select v-model="question.category">
+          <label>Category: </label>
+          <select class="ml-3 mb-2"v-model="question.category">
             <option disabled value="">Please select one</option>
             <option value="advice">advice</option>
             <option value="beta_room">Beta Room</option>
