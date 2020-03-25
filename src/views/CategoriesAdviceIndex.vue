@@ -20,7 +20,9 @@
           <div class="blog-footer">
             <div class="row">
               <div class="col-sm-4">
+                <router-link v-bind:to="'/users/' + question.user_id">
                 <p class="mb-0 blog-views"><span class="text-dim"><i class="mdi mdi-account-outline"></i>User: {{ question.op }}</span></p>
+                </router-link>
               </div>
               <div class="col-sm-4">
               <p class="mb-0 blog-views"> <span class="text-dim"><i class="mdi mdi-calendar-clock"></i> Created: {{ relativeDate(question.created_at) }}</span></p>

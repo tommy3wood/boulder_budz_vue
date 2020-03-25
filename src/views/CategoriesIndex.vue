@@ -57,7 +57,7 @@
         </div>
         <div class="blog-content-body">
           <h2 class="cat-feedback-header mb-20"><router-link v-bind:to="'/Categories/feedback'">Feedback</router-link></h2>
-          <p class="blog-desc mb-30 text-white">Send your latest project? Set a sweet route on your home wall? This is the place for you!</p>
+          <p class="blog-desc mb-30 text-white">See a problem? Let us hear it! We are making this site for you after all!</p>
         </div>
       </div>
     </div>

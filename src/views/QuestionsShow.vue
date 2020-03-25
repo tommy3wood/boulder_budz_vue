@@ -14,9 +14,9 @@
                   <li class="list-inline"><a href="/Categories/advice" class="btn-gradient-cate-info">{{ question.category }}</a></li>
                 </ul>
               </div>
-              <div class="col-sm-5">
+              <div class="col-sm-5 text-align:left">
                 <div class="blog-content-date">
-                  <p>{{question.created_at}}</p>
+                  <p>{{relativeDate(question.created_at)}}</p>
                 </div>
               </div>
             </div>
@@ -70,6 +70,7 @@
 <script>
   var axios = require("axios");
   import Answer from '../components/Answer.vue';
+  import moment from "moment";
 
   export default {
     data: function() {
@@ -101,6 +102,7 @@
           .post("/api/answers", clientParams)
           .then(response => {
             this.question.answers.push(response.data);
+            this.qa_content = "";
           }).catch(error => {
             this.errors = error.response.data.errors;
           });
