@@ -25,9 +25,6 @@
                 <li class="menu-item">
                   <a href="/questions/new">New Question</a>
                 </li>
-                <li>
-                  <a href="'/users/' + this.userId">User Profile</a>
-                </li> 
               </ul>
             </div>                    
           </div>
@@ -42,7 +39,7 @@
               <div class="col-lg-6">
                 <div class="topbar-left">
                   <ul v-if="userEmail" class="list-inline mb-0">
-                    <li class="list-inline-item mdi mdi-email text-secondary">Logged in as <a href="/users/ this.$parent.userId">{{ userEmail }}</a></li>                    
+                    <li class="list-inline-item mdi mdi-email text-secondary">Logged in as <router-link v-bind:to="'/users/' + this.userId">{{ userEmail }}</router-link></li>                    
                   </ul>
                 </div>
               </div>
@@ -71,25 +68,11 @@
                   <a href="/"><img src="/logo_small_03.png" class="img img-responsive" alt="logo"/></a>
                 </div>
               </div>
-              <div class="col-3 col-md-3">
-                <div class="searchbar text-right">
-                  <a id="search-open-btn" class="btn-header">
-                    <i class="mdi mdi-magnify"></i>
-                  </a>
-                </div>
-              </div>
             </div>
           </div>
         </div>
     </header>
-    <!-- end blogen header -->
-    <div id="nav">
-      
-      
-      
-       
-    </div>
-    
+    <!-- end blogen header -->    
     <router-view/>
     <footer class="footer section text-center">
         <div class="container">
@@ -134,7 +117,7 @@ export default {
     if (id) {
       this.userId = id;
     }
-  }
+  },
 }
 </script> 
 

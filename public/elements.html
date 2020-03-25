@@ -813,7 +813,62 @@ Start Sidebar Menu -->
         </form>
       </div>
     </div>
-  <!-- end answer box -->
 
-<!-- question show page end
+<!-- box -->
 
+ <div class="questions-index container">
+   <div class="blog-details-box border-gradient-info mb-30">
+     <div class="blog-head mt-5">
+       <img :src="question.image_url" v-bind:alt="question.title">
+     </div>
+     <div class="blog-content">
+       <div class="blog-content-head">
+         <div class="row">
+           <div class="col-sm-7">
+             
+             <div class="col-sm-5">
+               <div class="blog-content-date">
+                 <p>{{question.created_at}}</p>
+               </div>
+             </div>
+           </div>
+         </div>
+         <div class="blog-content-body">
+           <h2 class="blog-title mb-20">{{question.title}}</h2>
+           <h6>{{question.op}}</h6>
+           <p class="text-white">{{question.content}}</p>
+           <div v-if="this.$parent.userEmail === question.op">
+             <router-link class="btn mb-2" v-bind:to="'/questions/' + question.id + '/edit'">Edit Question</router-link>
+             <br>
+             <button class="btn danger" v-on:click="destroyQuestion()">Delete</button>
+           </div>
+
+           <blockquote class="blockquote m-5">
+             <h1>Respond to this post:</h1>
+             <form v-on:submit.prevent="createQuestionAnswer()">
+               <ul>
+                 <li class="text-danger" v-for="error in errors">{{ error }}</li>
+               </ul>
+               
+               <div class="form-group">
+                 <label class="text-dim mr-2">Text Response:</label>
+                 <input type="text" v-model="qa_content">
+               </div>
+
+               <input class="btn btn-pri mb-1 mt-1" type="submit" value="Respond">
+             </form>
+             <router-link class="btn btn-pri mb-1 mt-1" v-bind:to="'/questions/' + question.id + '/image'">Image Response</router-link>
+           </blockquote>
+         </div>
+       </div>
+     </div>
+   </div>
+
+
+
+   <router-link v-bind:to="answer.parent_route">Answer Context</router-link>
+   <div v-if="this.$parent.userEmail === answer.answer_op">
+     <router-link v-bind:to="'/answers/' + answer.id + '/edit'">Edit Answer</router-link>
+     <br>
+     <button v-on:click="destroyAnswer()">Delete</button>
+   </div>

@@ -1,26 +1,51 @@
 <template>
-  <div class="answers-index">
-      <h5 class="text-secondary">User: {{ answer.answer_op }}</h5>
-      <h5 class="text-secondary">Answer: {{ answer.content }}</h5>
-      <router-link v-bind:to="answer.parent_route">Answer Context</router-link>
-      <div v-if="this.$parent.userEmail === answer.answer_op">
-        <router-link v-bind:to="'/answers/' + answer.id + '/edit'">Edit Answer</router-link>
-        <br>
-        <button v-on:click="destroyAnswer()">Delete</button>
+  <div class="answers-index container">
+    <div class="blog-details-box border-gradient-info mt-30 mb-30">
+      <div v-if="answer.image" class="blog-head mt-5">
+        <img :src="answer.image_url">
       </div>
-      <form v-on:submit.prevent="createAnswer()">
+      <div class="blog-content">
+        <div class="blog-content-head">
+          <div class="row">
+            <div class="col-sm-7">
+              <div class="col-sm-5">
+                <div class="blog-content-date">
+                  <p>{{answer.created_at}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="blog-content-body">
+            <h2 class="blog-title mb-20">
+              REPLYING TO:
+            </h2>
+            <h4>
+              <label class="mr-3">User:</label>
+              {{answer.answer_op}}
+            </h4>
+            <h5>
+              <router-link v-bind:to="answer.parent_route">Reply Context</router-link>
+            </h5>
+            <p class="text-dim">{{answer.content}}</p>
 
-        <h5 class="text-secondary">Reply to answer</h5>
-        <ul>
-          <li class="text-danger" v-for="error in errors">{{ error }}</li>
-        </ul>
+            <blockquote class="blockquote m-5">
+              <h4>Reply to Post</h4>
+              <form v-on:submit.prevent="createAnswer()">
+                <ul>
+                  <li class="text-danger" v-for="error in errors">{{ error }}</li>
+                </ul>
 
-        <div class="form-group">
-          <input type="text" v-model="content_aa">
+                <div class="form-group">
+                  <textarea v-model="content_aa" id="message" name="message" cols="45" rows="5" class="form-control" placeholder="Enter Your Reply..."></textarea>
+                </div>
+
+                <input class="btn btn-info mb-5" type="submit" value="Respond">
+              </form>
+            </blockquote>
+          </div>
         </div>
-
-        <input class="btn btn-info" type="submit" value="Respond">
-      </form>
+      </div>
+    </div>
   </div>
 </template>
 

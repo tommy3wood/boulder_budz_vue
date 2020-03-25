@@ -12,7 +12,11 @@
           </div>
           <div class="media-body">
             <img v-if="updateAnswer.image_url" :src="updateAnswer.image_url" height="150" width="150">
-            <h4 class="media-heading">{{ updateAnswer.answer_op }}</h4>
+            <router-link v-bind:to="'/users/'+ updateAnswer.user_id">
+              <h5 class="media-heading">{{ updateAnswer.answer_op }}</h5>
+            </router-link>
+            
+            <p class="text-white">{{ updateAnswer.created_at }}</p>
             <p class="text-white">{{ updateAnswer.content }}</p>
             <router-link rel="nofollow" class="comment-reply-link text-dim mb-5" v-bind:to="'/answers/' + updateAnswer.id"><i class="mdi mdi-reply mr5"></i> Reply!</router-link>
             <answer v-for="nestedAnswer in answer.answers" :answer="nestedAnswer"></answer>   
@@ -78,6 +82,9 @@ export default {
         })
       });
     },
+    relativeDate: function(date) {
+      return moment(date).format('MMMM Do YYYY, h:mm a');
+    }
   }
 };
 </script>

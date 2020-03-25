@@ -1,6 +1,7 @@
 <template>
   <div class="questions-index container">
-    <div class="blog-details-box border-gradient-info mb-30">
+    <div v-if="question.category === 'advice'" class="blog-details-box border-gradient-info mb-30">
+    
       <div class="blog-head mt-5">
         <img :src="question.image_url" v-bind:alt="question.title">
       </div>
@@ -22,15 +23,9 @@
           </div>
           <div class="blog-content-body">
             <h2 class="blog-title mb-20">{{question.title}}</h2>
-            <h6>{{question.op}}</h6>
+            <router-link v-bind:to="'/users/' + question.user_id"><h6>{{question.op}}</h6></router-link>
+            
             <p class="text-white">{{question.content}}</p>
-            <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
             <div v-if="this.$parent.userEmail === question.op">
               <router-link class="btn mb-2" v-bind:to="'/questions/' + question.id + '/edit'">Edit Question</router-link>
               <br>
@@ -53,17 +48,11 @@
               </form>
               <router-link class="btn btn-pri mb-1 mt-1" v-bind:to="'/questions/' + question.id + '/image'">Image Response</router-link>
             </blockquote>
-
           </div>
         </div>
       </div>
-      
 
-
-      
     </div>
-
-
     <div class="first-level-answers comment-box border-gradient-info mb-30">
       <div class="comment-title">
         <h2>Answers</h2>
@@ -72,13 +61,10 @@
         <answer v-for="nestedAnswer in question.answers" :answer="nestedAnswer"></answer>
       </div>  
     </div>
-
-      
   </div>
 </template>
 
 <style>
-
 </style>
 
 <script>
@@ -125,6 +111,9 @@
           .then(response => {
             this.$router.push("/questions");
           });
+      },
+      relativeDate: function(date) {
+        return moment(date).format('MMMM Do YYYY, h:mm a');
       }
     }
   };

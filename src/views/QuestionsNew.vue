@@ -9,7 +9,7 @@
         </ul>
 
         <div class="form-group">
-          <label class="mr-2">Category: </label>
+          <label class="mr-2">Post Category: </label>
           <select v-model="category">
             <option disabled value="">Please select one</option>
             <option value="advice">advice</option>
@@ -20,13 +20,13 @@
         </div>
 
         <div class="form-group mt-3">
-          <label>Question Title: </label>
+          <label>Post Title: </label>
           <input class="form-control" type="text" v-model="title">
         </div>
 
         <div class="form-group">
-          <label>Question Body: </label>
-          <input class="form-control" type="text" v-model="content">
+          <label>Post Body: </label>
+          <textarea v-model="content" id="message" name="message" cols="45" rows="5" class="form-control" placeholder="Enter Your Question..."></textarea>
         </div>
 
         <div>
@@ -34,7 +34,7 @@
           <input type="file" v-on:change="setFile($event)" ref="fileInput">
         </div>
 
-        <input class="btn btn-primary mb-5 mt-5" type="submit" value="Create">
+        <input class="btn mb-5 mt-5" type="submit" value="Create">
       </form>
 
    

@@ -87,26 +87,26 @@
             :canvasHeight="canvasHeight" 
             ref="editor"
           />
-
+          
           <form v-on:submit.prevent="createAnswer()">
-          <ul>
-            <li class="text-danger" v-for="error in errors">{{ error }}</li>
-          </ul>
-          <label class="text-dim">Respond:</label>
-          <div class="form-group">
-            <input type="text" class="form-control" v-model="content">
-          </div>
+            <ul>
+              <li class="text-danger" v-for="error in errors">{{ error }}</li>
+            </ul>
+            <div class="form-group">
+              <label class="text-dim">Text Reply: </label>
+              <textarea v-model="content" id="message" name="message" cols="45" rows="5" class="form-control" placeholder="Enter your response here..."></textarea>
+            </div>
 
-          <div>
-            <label class="text-dim">Picture: </label>
+            <div>
+              <label class="text-dim">Picture: </label>
+              <br>
+              <input type="file" class="form-control" v-on:change="setFile($event)" ref="fileInput">
+            </div>
             <br>
-            <input type="file" class="form-control" v-on:change="setFile($event)" ref="fileInput">
-          </div>
-          <br>
-          <input class="btn btn-primary mb-5" type="submit" value="Create">
+            <input class="btn mb-5" type="submit" value="Create">
           </form>
-
         </div>
+        
 
         <div class="icon-bar colors">
           <ColorPicker :color="'#e40000'" :event="changeColor" />
@@ -120,6 +120,10 @@
         </div>
       </div>
     </div>
+    <blockquote class="blockquote m-5">
+      <label class="text-dim">To attach the edited image to your reply, please save your changesusing the far right icon on the toolbar. Then in the form below the editor use the Choose File button to attach the edited image to your reply.</label>
+    </blockquote>
+    
   </div>
 
 </template>
