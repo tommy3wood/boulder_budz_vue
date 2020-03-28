@@ -111,7 +111,7 @@
         axios
           .delete("/api/questions/" + this.$route.params.id)
           .then(response => {
-            this.$router.push("/questions");
+            this.$router.push("/");
           });
       },
       relativeDate: function(date) {
