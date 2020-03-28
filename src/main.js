@@ -7,7 +7,7 @@ import "bootstrap";
 // import "bootstrap/dist/css/bootstrap.min.css";
 
 axios.defaults.baseURL = 
-  process.env.NODE_ENV === "development" ? "localhost:3000" : "https://stark-inlet-24679.herokuapp.com";
+  process.env.NODE_ENV === "https://stark-inlet-24679.herokuapp.com";
 
 var jwt = localStorage.getItem("jwt");
 if (jwt) {
