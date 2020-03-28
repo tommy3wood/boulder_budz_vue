@@ -10,13 +10,13 @@
             <div class="menu-main-menu-container">
               <ul id="menu-main-menu" class="menu">
                 <li class="menu-item">
-                  <a href="/Signup" >Signup</a>
+                  <a href="/signup" >Signup</a>
                 </li>
                 <li class="menu-item">
-                  <a href="/Login">Login</a>
+                  <a href="/login">Login</a>
                 </li>
                 <li class="menu-item">
-                  <a href="/Logout">Logout</a>
+                  <a href="/logout">Logout</a>
                 </li>
                 </li>             
                 <li class="menu-item">
