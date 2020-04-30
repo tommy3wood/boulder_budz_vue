@@ -16,7 +16,7 @@
     "bootstrap-vue": "^2.7.0",
     "core-js": "^3.6.4",
     "fibers": "^4.0.2",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "sass": "^1.26.3",
